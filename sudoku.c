@@ -90,6 +90,7 @@ List* get_adj_nodes(Node* n){
    int i,j;
    if (first_empty(n,&i,&j)) {
       Node* adj = createNode();
+      adj = copy(n);
       for(int k = 1 ; k <= 9 ; k++) {
          if (is_in_row_col(n,i,j,k) || is_in_3x3(n,i,j,k))
             continue;
