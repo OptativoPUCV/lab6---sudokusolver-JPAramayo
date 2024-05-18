@@ -86,7 +86,7 @@ bool is_in_3x3(Node* n, int pos_i, int pos_j, int k) {
 }
 
 List* get_adj_nodes(Node* n){
-   List* list=createList();
+   List* list = createList();
    int i,j;
    if (first_empty(n,&i,&j)) {
       Node* adj = createNode();
@@ -95,6 +95,7 @@ List* get_adj_nodes(Node* n){
             continue;
          adj->sudo[i][j] = k;
       }
+      pushBack(list,adj);
    }
    return list;
 }
