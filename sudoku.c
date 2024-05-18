@@ -44,11 +44,6 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
-
-    return 1;
-}
-
 bool first_empty(Node* n, int* pos_i, int* pos_j) {
    int i, j;
    for(i = 0 ; i < 9 ; i++) {
@@ -85,17 +80,27 @@ bool is_in_3x3(Node* n, int pos_i, int pos_j, int k) {
    return false;
 }
 
+int is_valid(Node* n){
+   for(int i = 0 ; i < 9 ; i++) {
+      for(int j = 0 ; j < 9 ; j++) {
+         int k = n->sudo[i][j];
+         if (k != 0) {
+            if (is_in_row_col(n,i,j,k) ||
+               is_in_3x3(n,i,j,k))
+               return 0;
+         }
+      }
+   }
+   return 1;
+}
+
 List* get_adj_nodes(Node* n){
    List* list = createList();
    int i,j;
    if (first_empty(n,&i,&j)) {
       Node* adj = createNode();
       adj = copy(n);
-      for(int k = 1 ; k <= 9 ; k++) {
-         if (is_in_row_col(n,i,j,k) || is_in_3x3(n,i,j,k))
-            continue;
-         adj->sudo[i][j] = k;
-      }
+      for(int k = 1 ; k <= 9 ; k++) adj->sudo[i][j] = k;
       pushBack(list,adj);
    }
    return list;
