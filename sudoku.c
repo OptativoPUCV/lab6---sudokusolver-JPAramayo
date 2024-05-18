@@ -72,8 +72,8 @@ bool is_in_3x3(Node* n, int pos_i, int pos_j, int k) {
    int lim_inf_i = pos_i - pos_i % 3;
    int lim_inf_j = pos_j - pos_j % 3;
 
-   for(i = lim_inf_i ; i < 3  ; i++) {
-      for(j = lim_inf_j ; j < 3 ; j++) {
+   for(i = lim_inf_i ; i < lim_inf_i + 3  ; i++) {
+      for(j = lim_inf_j ; j < lim_inf_j + 3 ; j++) {
          if(n->sudo[i][j] == k) return true;
       }
    }
