@@ -98,10 +98,12 @@ List* get_adj_nodes(Node* n){
    List* list = createList();
    int i,j;
    if (first_empty(n,&i,&j)) {
-      Node* adj = createNode();
-      adj = copy(n);
-      for(int k = 1 ; k <= 9 ; k++) adj->sudo[i][j] = k;
-      pushFront(list,adj);
+      for(int k = 1 ; k <= 9 ; k++) {
+         Node* adj = createNode();
+         adj = copy(n);
+         adj->sudo[i][j] = k;
+         pushBack(list,adj);
+      }
    }
    return list;
 }
