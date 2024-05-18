@@ -61,8 +61,8 @@ bool first_empty(Node* n, int* pos_i, int* pos_j) {
 bool is_in_row_col(Node* n, int pos_i, int pos_j, int k) {
    int i;
    for(i = 0 ; i < 9 ; i++) {
-      if(n->sudo[i][pos_j] == k) return true;
-      if(n->sudo[pos_i][i] == k) return true;
+      if(n->sudo[i][pos_j] == k && i != pos_i) return true;
+      if(n->sudo[pos_i][i] == k && i != pos_j) return true;
    }
    return false;
 }
@@ -74,6 +74,7 @@ bool is_in_3x3(Node* n, int pos_i, int pos_j, int k) {
 
    for(i = lim_inf_i ; i < lim_inf_i + 3  ; i++) {
       for(j = lim_inf_j ; j < lim_inf_j + 3 ; j++) {
+         if(i == pos_i && j == pos_j) continue;
          if(n->sudo[i][j] == k) return true;
       }
    }
